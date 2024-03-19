@@ -1,0 +1,11 @@
+
+#include"/home/sachin/projects/spfi/src/kernel/ButlerVolmerKinetics.C"
+#include"/home/sachin/projects/spfi/src/kernel/CHConvection.C"
+#include"/home/sachin/projects/spfi/src/kernel/Conduction.C"
+#include"/home/sachin/projects/spfi/src/kernel/CoupledPotentialPoisson.C"
+#include"/home/sachin/projects/spfi/src/kernel/DarcyPressure.C"
+#include"/home/sachin/projects/spfi/src/kernel/ElectrochemicalMigration.C"
+#include"/home/sachin/projects/spfi/src/kernel/HeatConvection.C"
+#include"/home/sachin/projects/spfi/src/kernel/IonConvection.C"
+#include"/home/sachin/projects/spfi/src/kernel/MultiSurfaceTension.C"
+#include"/home/sachin/projects/spfi/src/kernel/SurfaceTension.C"
