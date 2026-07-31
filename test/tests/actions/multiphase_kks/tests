@@ -1,0 +1,32 @@
+[Tests]
+  [phase_agnostic_setup]
+    type = RunApp
+    input = phase_agnostic.i
+    cli_args = '--check-input'
+    expect_out = 'Syntax OK'
+    absent_out = 'Missing coupled variables'
+    requirement = 'The system shall construct a multi-phase KKS model with arbitrary phase and order-parameter counts.'
+  []
+  [expression_direct_ic_setup]
+    type = RunApp
+    input = expression_direct_ic.i
+    cli_args = '--check-input'
+    expect_out = 'Syntax OK'
+    absent_out = 'Missing coupled variables'
+    requirement = 'The system shall accept arbitrary free-energy and direct initialization expressions independent of phase, component, and order-parameter counts.'
+  []
+  [standalone_elasticity_setup]
+    type = RunApp
+    input = phase_field_elasticity.i
+    cli_args = '--check-input'
+    expect_out = 'Syntax OK'
+    requirement = 'The application shall create phase-field-coupled elasticity materials without depending on a KKS formulation.'
+  []
+  [standalone_diagnostics_setup]
+    type = RunApp
+    input = phase_field_diagnostics.i
+    cli_args = '--check-input'
+    expect_out = 'Syntax OK'
+    requirement = 'The application shall create phase-area diagnostics without depending on KKS or mechanics.'
+  []
+[]

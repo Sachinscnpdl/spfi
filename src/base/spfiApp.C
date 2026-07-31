@@ -3,6 +3,7 @@
 #include "AppFactory.h"
 #include "ModulesApp.h"
 #include "MooseSyntax.h"
+#include "SPFIConsoleUtils.h"
 
 InputParameters
 spfiApp::validParams()
@@ -15,18 +16,23 @@ spfiApp::validParams()
 spfiApp::spfiApp(InputParameters parameters) : MooseApp(parameters)
 {
   spfiApp::registerAll(_factory, _action_factory, _syntax);
+
+  if (comm().rank() == 0)
+    SPFIConsoleUtils::writeBanner();
 }
 
 spfiApp::~spfiApp() {}
 
-void 
-spfiApp::registerAll(Factory & f, ActionFactory & af, Syntax & s)
+void
+spfiApp::registerAll(Factory & f, ActionFactory & af, Syntax & syntax)
 {
-  ModulesApp::registerAllObjects<spfiApp>(f, af, s);
+  ModulesApp::registerAllObjects<spfiApp>(f, af, syntax);
   Registry::registerObjectsTo(f, {"spfiApp"});
   Registry::registerActionsTo(af, {"spfiApp"});
 
-  /* register custom execute flags, action syntax, etc. here */
+  registerSyntax("MultiPhaseKKSAction", "Modules/SPFI/MultiPhaseKKS");
+  registerSyntax("PhaseFieldElasticityAction", "Modules/SPFI/PhaseFieldElasticity");
+  registerSyntax("PhaseFieldDiagnosticsAction", "Modules/SPFI/PhaseFieldDiagnostics");
 }
 
 void

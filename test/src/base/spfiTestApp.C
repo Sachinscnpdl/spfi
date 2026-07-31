@@ -11,6 +11,7 @@
 #include "Moose.h"
 #include "AppFactory.h"
 #include "MooseSyntax.h"
+#include "SPFIConsoleUtils.h"
 
 InputParameters
 spfiTestApp::validParams()
@@ -24,6 +25,9 @@ spfiTestApp::spfiTestApp(InputParameters parameters) : MooseApp(parameters)
 {
   spfiTestApp::registerAll(
       _factory, _action_factory, _syntax, getParam<bool>("allow_test_objects"));
+
+  if (comm().rank() == 0)
+    SPFIConsoleUtils::writeBanner();
 }
 
 spfiTestApp::~spfiTestApp() {}
